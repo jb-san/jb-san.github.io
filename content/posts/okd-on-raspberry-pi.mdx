@@ -1,0 +1,43 @@
+---
+title: OKD ( openshift origin ) on raspberry pi
+date: 2019-10-15
+draft: true
+---
+
+For a recent client we have been looking to move most of our stuff into some for of cloud.
+and they decided to use openshift, so to get more familiar with it i thought i would set it up
+on my raspberry pi at home just to play around with the core concepts.
+
+Turns out that is more troublesome than i thought.
+
+## What is OKD ?
+
+OKD ( formerly known as openshift origin ) is the open-source community edition of Redhats Openshift software.
+its basically kubernetes with some niceties on top.
+
+So what is the problem ?
+well, there are releases to download from their [git](https://github.com/openshift/origin), but the builds are only
+for Linux(amd64), windows and macOS, to be able to run it on the raspberry pi we need to build it for the arm architecture.
+Doing that on the rpi(raspberry pi) is not ideal, so how do we build it ? well.. docker to the rescue.
+
+## Lets get started
+
+first, we need to build the [OKD](https://github.com/openshift/origin) binaries for arm.
+To do this, we will create our first Dockerfile.
+
+```Dockerfile
+FROM centos:8
+// Set environment variables to enable arm build
+ENV OKD_VERSION v3.11.0
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+ENV GOARCH=arm64
+ENV GOARM=7
+// install golang
+RUN yum -y update\
+    yum module -y install go-toolset
+RUN mkdir -p $HOME/go/src/github.com/
+
+RUN go build -v -tags 'include_gcs include_oss containers_image_openpgp' github.com/openshift/origin/cmd/oc
+
+```
