@@ -5,7 +5,7 @@ tags: []
 draft: true
 ---
 
-For a recent client we have been looking to move most of our stuff into some for of cloud.
+For a recent client we have been looking to move most of our stuff into some sort of cloud.
 and they decided to use openshift, so to get more familiar with it i thought i would set it up
 on my raspberry pi at home just to play around with the core concepts.
 
@@ -36,7 +36,7 @@ ENV GOARM=7
 RUN yum -y update\
     yum module -y install go-toolset
 RUN mkdir -p $HOME/go/src/github.com/
-
+VOLUME
 RUN go build -v -tags 'include_gcs include_oss containers_image_openpgp' github.com/openshift/origin/cmd/oc
 
 ```
