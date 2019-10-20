@@ -6,7 +6,7 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -d public -u \"Github Actions <jonathan@x3m.io>\""
   },
   "dependencies": {
     "gatsby": "^2.16.1",
