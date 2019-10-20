@@ -8,6 +8,7 @@ export default function footer() {
                 pt: 3,
             })}
         >
+            <Link to={`/about`}>about</Link> {` `}&bull;{` `}
             {socialLinks.map((platform, i, arr) => (
                 <Fragment key={platform.url}>
                     <Styled.a href={platform.url} target="_blank" rel="noopener noreferrer">
