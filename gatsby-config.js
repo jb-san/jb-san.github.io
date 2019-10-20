@@ -15,6 +15,10 @@ module.exports = {
         name: `github`,
         url: `https://github.com/jb-san`,
       },
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/jonathan-borg-8a520b97/`,
+      },
     ],
   },
 }
