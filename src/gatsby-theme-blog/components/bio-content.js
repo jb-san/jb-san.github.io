@@ -9,6 +9,6 @@ export default () => (
   <Fragment>
     Personal blog of <Styled.a href="http://x3m.io/">Jonathan Borg</Styled.a>
     <br />
-    Bubble sorting my thoughts
+    Just trying to bubble sort my thoughts
   </Fragment>
 )

@@ -6,7 +6,7 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public -u \"Github Actions <jonathan@x3m.io>\""
+    "deploy": "gatsby build && gh-pages -d public -u \"Github Actions <jonathan@x3m.io>\" -r https://$GH_TOKEN@github.com/jb-san/jb-san.github.io.git"
   },
   "dependencies": {
     "gatsby": "^2.16.1",

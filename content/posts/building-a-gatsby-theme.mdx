@@ -1,0 +1,66 @@
+---
+title: Building a GatsbyJS theme
+date: 2019-10-20
+draft: true
+---
+
+GatsbyJS is a great way to build websites and web-apps, and recently they introduced the concept of
+[themes](https://www.gatsbyjs.org/docs/themes/what-are-gatsby-themes/).
+
+this very blog is built using the [gatsby-starter-blog-theme](https://github.com/gatsbyjs/gatsby-starter-blog-theme).
+But one thing that I was missing was the ability to start writing a blogpost and marking it as a draft so that it wouldn't
+get published during the next build.
+
+Fortunately gatsby themes are built with extendability in mind, so lets build that functionality.
+
+## gatsby-theme-blog-drafts
+
+First of we will use the `frontmatter` fields in the `*.mdx` files to signify that a specific post is a draft.
+
+we would write:
+
+```markdown
+---
+title: Building a GatsbyJS theme
+date: 2019-10-20
+status: draft
+---
+```
+
+We can add that, but it wont do anything. In order for it to have effect we need to shadow some of the components from the theme.
+lets start with the query that fetches all the blogposts.
+
+<!-- https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-theme-blog-core/src/templates/posts-query.js -->
+
+```javascript
+import { graphql } from "gatsby"
+import PostsPage from "../components/posts"
+
+export default PostsPage
+
+export const query = graphql`
+  query PostsQuery {
+    site {
+      siteMetadata {
+        title
+        social {
+          name
+          url
+        }
+      }
+    }
+    allBlogPost(sort: { fields: [date, title], order: DESC }, limit: 1000) {
+      edges {
+        node {
+          id
+          excerpt
+          slug
+          title
+          date(formatString: "MMMM DD, YYYY")
+          tags
+        }
+      }
+    }
+  }
+`
+```
