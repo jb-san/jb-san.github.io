@@ -7,13 +7,12 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latests
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [10.x]
     steps:
       - uses: actions/checkout@v1
-
         # with:
         #   submodules: true
       - name: Use Node.js ${{ matrix.node-version }}
