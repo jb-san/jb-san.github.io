@@ -1,12 +1,10 @@
 import React from "react"
 import "./colors.css"
 import style from "./index.module.css"
-import Link from "./components/Link"
 import Box from "./components/Box"
 import Logo from "./components/Logo"
 import Separator from "./components/Quicklink/Separator"
 import Quicklink from "./components/Quicklink"
-import Livebox from "./components/Livebox"
 import Livebar from "./compositions/Livebar"
 import Navbar from "./compositions/Navbar"
 import Contentbox from "./components/Contentbox"
@@ -66,7 +64,10 @@ export default function lunarstorm() {
             correct or the best way to do this, but it was fun.
           </Contentbox>
           <Contentbox title={`JUST FOR FUN`}>
-            all of the code is on my github <a href={`#`}>here</a>
+            all of the code is on my github
+            <a href={"https://github.com/jb-san/jb-san.github.io/tree/develop"}>
+              here
+            </a>
           </Contentbox>
           <Contentbox title={`CREDITS`}>
             Icons made by

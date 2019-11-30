@@ -28,7 +28,7 @@ export default function Quicklink({ children, icon, to = "#" }) {
       }}
     >
       <div style={{ flexGrow: 1 }}>
-        <img src={icons[icon]} width={18} height={18} />
+        <img src={icons[icon]} alt={`quick link icon`} width={18} height={18} />
       </div>
       <div>{children}</div>
     </a>
