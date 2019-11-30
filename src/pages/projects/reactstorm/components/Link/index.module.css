@@ -4,7 +4,7 @@
   box-sizing: border-box;
   position: relative;
   color: var(--white);
-  padding: 1px 4px;
+  padding: 3px 4px;
   border: 1px solid black;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
