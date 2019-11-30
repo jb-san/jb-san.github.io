@@ -3,6 +3,7 @@ import heart from "./heart.svg"
 import feet from "./feet.svg"
 import mail from "./mail.svg"
 import pencils from "./pencils.svg"
+import Pixeltext from "../Pixeltext"
 export default function Quicklink({ children, icon, to = "#" }) {
   const icons = {
     heart: heart,
@@ -14,8 +15,6 @@ export default function Quicklink({ children, icon, to = "#" }) {
     <a
       href={to}
       style={{
-        fontFamily: "VT323",
-        fontSize: 11,
         letterSpacing: 2,
         height: 32,
         display: "flex",
@@ -30,7 +29,9 @@ export default function Quicklink({ children, icon, to = "#" }) {
       <div style={{ flexGrow: 1 }}>
         <img src={icons[icon]} alt={`quick link icon`} width={18} height={18} />
       </div>
-      <div>{children}</div>
+      <div>
+        <Pixeltext size={11}>{children}</Pixeltext>
+      </div>
     </a>
   )
 }

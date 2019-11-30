@@ -1,0 +1,25 @@
+.root {
+  position: relative;
+  min-height: 20px;
+  min-width: 10px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--border-blue);
+  background: linear-gradient(
+    180deg,
+    var(--dark-blue) 0%,
+    var(--light-blue) 100%
+  );
+}
+.root:after {
+  content: " ";
+  position: absolute;
+  border-top-right-radius: 40px;
+  /* z-index: -1; */
+  top: 40%;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: var(--orange);
+
+  border-top: 1px solid black;
+}

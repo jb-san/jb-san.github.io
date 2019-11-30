@@ -10,6 +10,8 @@ import Navbar from "./compositions/Navbar"
 import Contentbox from "./components/Contentbox"
 import Page from "./components/Page"
 import Snow from "./components/Snow"
+import Pixeltext from "./components/Pixeltext"
+import Leftshim from "./components/Box/Leftshim"
 
 export default function lunarstorm() {
   return (
@@ -21,7 +23,8 @@ export default function lunarstorm() {
             <Separator></Separator>
           </div>
         </Box>
-        <div style={{ marginLeft: 10 }}>
+        <div style={{ display: "flex" }}>
+          <Leftshim></Leftshim>
           <Box>
             <div style={{ display: "flex" }}>
               <Quicklink icon={"feet"}>GÄSTBOK</Quicklink>
@@ -33,6 +36,8 @@ export default function lunarstorm() {
               <Quicklink icon={"heart"}>VÄNNER</Quicklink>
             </div>
           </Box>
+        </div>
+        <div style={{ marginLeft: 10 }}>
           <Livebar text={`jb: this was a fun expirement`} />
           <Navbar />
         </div>
@@ -51,12 +56,10 @@ export default function lunarstorm() {
                   fontFamily: '"VT323", monospace',
                   fontWeight: "bold",
                   fontSize: 24,
-                  paddingLeft: 10,
-                  paddingRight: 10,
                   color: "#FFF",
                 }}
               >
-                WELCOME TO REACTSTORM
+                <Pixeltext>WELCOME TO REACTSTORM</Pixeltext>
               </span>
             }
           >

@@ -12,7 +12,9 @@ export default function Contentbox({ title, children }) {
         backgroundColor: "#FFF",
       }}
     >
-      <Box>{title}</Box>
+      <Box>
+        <div style={{ padding: 5, fontSize: 14 }}>{title}</div>
+      </Box>
       <div
         style={{
           padding: 5,
