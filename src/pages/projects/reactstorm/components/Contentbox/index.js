@@ -6,7 +6,8 @@ export default function Contentbox({ title, children }) {
     <div
       style={{
         border: "1px solid black",
-        fontFamily: "",
+
+        fontFamily: '"Trebuchet MS" ,arial,sans-serif',
         color: "#FFF",
         backgroundColor: "#FFF",
       }}
