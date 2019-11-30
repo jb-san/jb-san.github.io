@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{252:function(t,c,n){"use strict";n.r(c),n.d(c,"default",(function(){return o}));var e=n(2),r=(n(1),n(293)),a=n.n(r);function o(){return Object(e.c)("div",null,Object(e.c)("img",{src:a.a,alt:"reactstorm"}))}},293:function(t,c,n){t.exports=n.p+"static/reactstorm-688e84f2ce34b40d0421e036f6aaca0b.svg"}}]);
-//# sourceMappingURL=component---src-pages-projects-reactstorm-components-logo-index-js-5995169c44ad550a2873.js.map
