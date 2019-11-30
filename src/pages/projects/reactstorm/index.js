@@ -9,7 +9,6 @@ import Livebar from "./compositions/Livebar"
 import Navbar from "./compositions/Navbar"
 import Contentbox from "./components/Contentbox"
 import Page from "./components/Page"
-import Snow from "react-snow-effect"
 
 export default function lunarstorm() {
   return (
