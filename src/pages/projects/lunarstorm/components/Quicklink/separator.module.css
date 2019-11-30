@@ -1,0 +1,7 @@
+.root {
+  width: 6px;
+  height: 1px;
+  background-color: #21546c;
+  box-shadow: 1px 1px 0 var(--border-blue);
+  margin-bottom: 4px;
+}

@@ -1,0 +1,10 @@
+.root {
+  min-height: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--border-blue);
+  background: linear-gradient(
+    180deg,
+    var(--dark-blue) 0%,
+    var(--light-blue) 100%
+  );
+}

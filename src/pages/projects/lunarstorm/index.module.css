@@ -1,0 +1,4 @@
+.body {
+  background-color: var(--orange);
+  max-width: 784px;
+}

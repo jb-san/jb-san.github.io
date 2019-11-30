@@ -4,6 +4,13 @@ module.exports = {
       resolve: `gatsby-theme-blog`,
       options: {},
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`VT323`],
+        display: "swap",
+      },
+    },
   ],
   // Customize your site metadata:
   siteMetadata: {
