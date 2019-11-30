@@ -9,6 +9,7 @@ import Livebar from "./compositions/Livebar"
 import Navbar from "./compositions/Navbar"
 import Contentbox from "./components/Contentbox"
 import Page from "./components/Page"
+import Snow from "./components/Snow"
 
 export default function lunarstorm() {
   return (
@@ -77,6 +78,7 @@ export default function lunarstorm() {
           </Contentbox>
         </div>
       </div>
+      <Snow></Snow>
     </Page>
   )
 }
