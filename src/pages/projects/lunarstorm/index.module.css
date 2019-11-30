@@ -1,4 +1,7 @@
 .body {
   background-color: var(--orange);
   max-width: 784px;
+  height: 100%;
+  border-right: 1px solid black;
+  box-shadow: 3px 3px 20px 6px rgba(0, 0, 0, 0.3);
 }

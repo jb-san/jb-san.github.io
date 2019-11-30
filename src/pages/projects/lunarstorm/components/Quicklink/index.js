@@ -1,8 +1,18 @@
 import React from "react"
-
-export default function Quicklink({ children }) {
+import heart from "./heart.svg"
+import feet from "./feet.svg"
+import mail from "./mail.svg"
+import pencils from "./pencils.svg"
+export default function Quicklink({ children, icon, to = "#" }) {
+  const icons = {
+    heart: heart,
+    feet: feet,
+    mail: mail,
+    pencils: pencils,
+  }
   return (
-    <div
+    <a
+      href={to}
       style={{
         fontFamily: "VT323",
         fontSize: 11,
@@ -12,10 +22,15 @@ export default function Quicklink({ children }) {
         flexDirection: "column",
         alignItems: "center",
         fontWeight: "bold",
+        padding: 5,
+        textDecoration: "none",
+        color: "white",
       }}
     >
-      <div style={{ flexGrow: 1 }}>ICON</div>
+      <div style={{ flexGrow: 1 }}>
+        <img src={icons[icon]} width={18} height={18} />
+      </div>
       <div>{children}</div>
-    </div>
+    </a>
   )
 }

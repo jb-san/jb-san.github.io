@@ -13,7 +13,8 @@
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-theme-blog": "^1.0.2",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-snow-effect": "^1.2.0"
   },
   "devDependencies": {
     "gh-pages": "^2.1.1"
