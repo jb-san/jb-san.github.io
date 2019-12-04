@@ -1,0 +1,89 @@
+---
+title: Thinking about modals
+date: 2019-12-04
+tags: [react, modals, a11y]
+---
+
+Modals are apart of any modern website/app, hate them or love them, they do have valid use cases, even if they are often used for annoying "we are using your data in this way.. approve plz" kind of ways.
+
+Most of the time you just want to darken the page and show a `Box` with some information in it. I have always reached for react-modal, since I could not be bothered
+to figure out all of the tricky things like trapping the focus inside of the box, return the focus to the previously focused element when it closes etc..
+And it worked great, it has a good clean API and is easy to use.
+
+But then came the day that i wanted to animate in the Box and the Overlay separately, I reached for my favorite react animation library, react-spring,
+Only to find out that there is no clear way to with react-modal.
+
+react-modal supports css animations which are based on css transitions, i find that physics based animations feels more natural than key-framed ones.
+and you can pass in specific classNames or styles to the overlay, but what if I don't want an Overlay ? what if the modal is a wacky svg element with some stuff inside of it and you want to animate it and trap the focus inside of it ?
+well i wanted to do just that, I wanted to do the classic "Nickolodeon" splat like a modal.
+
+So i decided to try to make a modal that would animate using react-spring but still handle the a11y and focus stuff.
+
+Ok, so first things first lets checkout [wai-aria-practices](https://www.w3.org/TR/wai-aria-practices/#dialog_modal) for some basics.
+
+```
+Keyboard Interaction
+
+In the following description, the term "tabbable element" refers to any element with a tabindex value of zero or greater. Note that values greater than 0 are strongly discouraged.
+
+    When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
+    Tab:
+        Moves focus to the next tabbable element inside the dialog.
+        If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+    Shift + Tab:
+        Moves focus to the previous tabbable element inside the dialog.
+        If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+    Escape: Closes the dialog.
+```
+
+so when a modal is open, we should trap it inside of the modal element. lets write a hook that does exactly that, lets call it `useTrapFocus`.
+
+since this is supposed to trap focus inside of an element we need to get back a ref that we can place on our element
+
+```javascript
+function Modal() {
+  const modalRef = useTrapFocus()
+  return (
+    <div aria-modal={true} role={"dialog"} ref={modalRef}>
+      content of modal
+    </div>
+  )
+}
+```
+
+this imaginary `useTrapfocus` hook would take care of trapping the focus, and returning focus to the element that caused the element to be rendered.
+
+Another common thing is to lock the body so that it doesn't scroll, so lets create a `useBodyScrollLock` hook
+
+```javascript
+function Modal() {
+  useBodyScrollLock()
+  const modalRef = useTrapFocus()
+
+  return (
+    <div aria-modal={true} role={"dialog"} ref={modalRef}>
+      content of modal
+    </div>
+  )
+}
+```
+
+now my modal component can be anything I want it to be, like a svg or anything, and my overlay is simply another component that my modal component renders in
+and i can use any animation library I want to animate it.
+
+```javascript
+function Modal() {
+  useBodyScrollLock()
+  const modalRef = useTrapFocus()
+  return (
+    <Overlay>
+      <svg aria-modal={true} role={"dialog"} ref={modalRef}>
+        content of modal
+      </svg>
+    </Overlay>
+  )
+}
+```
+
+I created the [react-customizable-modal](https://www.npmjs.com/package/@weahead/react-customizable-modal)
+where I have the `useTrapFocus` `useBodyScrollLock` and some other helper hooks like `useCloseOnEsc` and `ModalPortal` component to help with creating a portal for the modal.
