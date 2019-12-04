@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{255:function(t,n,o){"use strict";o.r(n),o.d(n,"default",(function(){return r}));var i=o(2);o(1);function r(t){var n=t.children;return Object(i.c)("div",{style:{position:"fixed",top:0,bottom:0,left:0,right:0,backgroundColor:"#296b84"}},n)}}}]);
+//# sourceMappingURL=component---src-pages-projects-reactstorm-components-page-index-js-7ab801ca4a05f74e0b48.js.map
