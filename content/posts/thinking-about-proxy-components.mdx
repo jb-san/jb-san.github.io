@@ -1,0 +1,80 @@
+---
+title: Thinking about proxy components
+date: 2019-12-17
+tags: [react, components, pattern]
+---
+
+Refactorability is.. not a word, but it should be, it should be defined as
+
+```
+To which degree or factor a piece of code or application is able to be changed with minimal impact on .
+```
+
+Refactorability and maintainability are closely related but separate concepts in my mind.
+maintainable code is something that can you write and make a effort to keep maintainable, and of course all of us should strive to write
+maintainable code, but what is refactorable code ?
+
+Well, I don't think there is **one** answer to this, i found myself thinking about this on a recent project i was working on.
+If we take the above made up definition, refactorable code should make it easy to change without having much of an impact on other code using that code,
+
+I was working on a _legacy_ application, well it was using 6 month old packages witch is legacy in the frontend world..
+having old packages is not a problem in it self, but the application that was basically a large dynamic form, and it had grown so much since its first inception
+that we where experiencing some problems with sluggish inputs due to using the otherwise excellent [formik](https://www.npmjs.com/package/formik) library.
+So, i decided to try out the [react-final-form](https://www.npmjs.com/package/react-final-form) library, that has more fine grained control to optimize rendering.
+after some initial testing, it looked promising, so when i decided to replace formik I had `import {Field} from 'formik'` sprinkled throughout the various components..
+
+_sigh_
+
+but just Ill just do a quick search&replace for `import {Field} from 'formik' -> import {Field} from 'react-final-form'` and everything should be fine right ?
+
+well no so fast, The `Field` from `formik` does not have exactly the same props as the one from `react-final-form`
+so for each place where i used `Field` i need to change it so the props are the ones that the `Field` component from `react-final-form` expects.
+
+I decided that it would be nice to have a local `components/Field` component, where i transform the props into the appropriate shape for the `react-final-form` `Field`
+
+```javascript
+import { Field as FinalFormField } from "react-final-form"
+export default function Field(props) {
+  //... tranform the props
+  return <FinalFormField {...transformedProps} />
+}
+```
+
+and I lived happily ever after... almost, at the last moment we decided to update the version of our internal component library, where a breaking change to the `Input` component, made it so that
+everywhere where we had imported it like `import FormInput from 'componentlib/lib/FormInput'` i now had to do a `import {FormInput} from 'componentlib`, **hey** this looks familiar, an "third party" component/library, needed to be changed, I know what to do..
+
+I create a `component/FormInput` component which I use the application, I can then transform the props if the new version of the component requires it, all in one place.
+
+```javascript
+import { FormInput as XFormInput } from "componentlibX"
+export default function FormInput(props) {
+  //... tranform the props
+  return <XFormInput {...transformedProps} />
+}
+```
+
+this repeated a couple of more times and it got me thinking, could this be a good pattern ?
+
+## The Pattern
+
+in any non trivial application you will always need to use third-party components. but when writing your actual component structure do we need to care that we are using Input from `material-ui` or from `uilibX` ?
+I think there is a point on always importing all components from `components/*`, so if you have an Input from `material-ui` you should create a **Proxy component** that you then use in you app.
+
+### PROs
+
+- abstracts the third party library, so that you can make changes or update the underlying lib in one place.
+- from the applications point of view you only ever import from local components, which makes it less tied to any specific library, if you want to change the `Input` component to a custom input you make the change in the local component, and not in 100 places throughout the codebase.
+
+### CONs
+
+- There is some overhead in every time you want to use a third party component, you have to create a corresponding component in your app, which can feel a bit redundant.
+- Hiding what library that is used is not always wanted, although once inside of the `Input` component it will be clear where it is imported from.
+
+## What makes code refactorable ?
+
+The ease to change the underlying implementation without impacting all of the components using it, or at least being able to make changes in a controlled way.
+with the above pattern we can update the underlying library or change it outright, and make temporary transformations to the props so that we can take our time and update the where it is used in a more controlled way.
+
+## Closing thoughts
+
+This is nothing new, we are used to creating more specific components that use third-party components in our application, like we might have a `Login` component that uses `Auth0` and other helpers, this is just my thoughts of how I could make my applications more resilient to fundamental changes of libraries etc.
