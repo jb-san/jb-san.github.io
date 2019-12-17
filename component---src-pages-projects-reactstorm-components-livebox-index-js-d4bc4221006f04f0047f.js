@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{248:function(n,c,r){"use strict";r.r(c),r.d(c,"default",(function(){return a}));var t=r(2),e=(r(1),r(253)),o=r.n(e);function a(n){var c=n.children;return Object(t.c)("div",{className:o.a.root},c)}}}]);
-//# sourceMappingURL=component---src-pages-projects-reactstorm-components-livebox-index-js-d4bc4221006f04f0047f.js.map
