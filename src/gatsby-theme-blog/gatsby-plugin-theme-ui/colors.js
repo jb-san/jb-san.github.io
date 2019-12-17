@@ -18,8 +18,8 @@ export default merge(defaultThemeColors, {
   modes: {
     dark: {
       background: blueGray,
-      primary: lightBlue,
-      highlight: lightBlue,
+      primary: darkBlue,
+      highlight: darkBlue,
     },
   },
 })
