@@ -18,6 +18,7 @@ module.exports = {
         siteSpeedSampleRate: 10,
         cookieDomain: "x3m.io",
       },
+    },
     {
       resolve: `gatsby-theme-blog`,
       options: {},
