@@ -21,20 +21,18 @@ So i decided to try to make a modal that would animate using react-spring but st
 
 Ok, so first things first lets checkout [wai-aria-practices](https://www.w3.org/TR/wai-aria-practices/#dialog_modal) for some basics.
 
-```
-Keyboard Interaction
-
-In the following description, the term "tabbable element" refers to any element with a tabindex value of zero or greater. Note that values greater than 0 are strongly discouraged.
-
-    When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
-    Tab:
-        Moves focus to the next tabbable element inside the dialog.
-        If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
-    Shift + Tab:
-        Moves focus to the previous tabbable element inside the dialog.
-        If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
-    Escape: Closes the dialog.
-```
+> Keyboard Interaction
+>
+> In the following description, the term "tabbable element" refers to any element with a tabindex value of zero or greater. Note that values greater than 0 are strongly discouraged.
+>
+>     When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
+>     Tab:
+>         Moves focus to the next tabbable element inside the dialog.
+>         If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+>     Shift + Tab:
+>         Moves focus to the previous tabbable element inside the dialog.
+>         If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+>     Escape: Closes the dialog.
 
 so when a modal is open, we should trap it inside of the modal element. lets write a hook that does exactly that, lets call it `useTrapFocus`.
 
