@@ -6,7 +6,7 @@ tags: [react, components, pattern]
 
 Refactorability is.. not a word, but it should be, it should be defined as
 
-> To which degree or factor a piece of code or application is able to be changed with minimal impact on.
+> To which degree or factor a piece of code or application is able to be changed with minimal impact on the code/application as a whole.
 
 Refactorability and maintainability are closely related but separate concepts in my mind.
 maintainable code is something that can you write and make a effort to keep maintainable, and of course all of us should strive to write
@@ -23,7 +23,11 @@ after some initial testing, it looked promising, so when i decided to replace fo
 
 _sigh_
 
-but just Ill just do a quick search&replace for `import {Field} from 'formik' -> import {Field} from 'react-final-form'` and everything should be fine right ?
+but just Ill just do a quick search&replace for
+
+`import {Field} from 'formik' -> import {Field} from 'react-final-form'`
+
+and everything should be fine right ?
 
 well no so fast, The `Field` from `formik` does not have exactly the same props as the one from `react-final-form`
 so for each place where i used `Field` i need to change it so the props are the ones that the `Field` component from `react-final-form` expects.
