@@ -5,7 +5,7 @@ module.exports = {
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "GA-UA-154722259-1", // Google Analytics / GA
+          "UA-154722259-1", // Google Analytics / GA
         ],
         // This object gets passed directly to the gtag config command
         // This config will be shared across all trackingIds
@@ -19,6 +19,7 @@ module.exports = {
           head: false,
           // Setting this parameter is also optional
           respectDNT: true,
+          // Avoids sending pageview hits from custom paths
         },
       },
     },
