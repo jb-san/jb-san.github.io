@@ -34,6 +34,7 @@ module.exports = {
         display: "swap",
       },
     },
+    `gatsby-remark-images`,
   ],
   // Customize your site metadata:
   siteMetadata: {
