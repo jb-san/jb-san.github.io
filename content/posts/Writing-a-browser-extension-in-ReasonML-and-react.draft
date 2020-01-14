@@ -1,0 +1,17 @@
+---
+title: Writing a browser extension in ReasonML and react
+date: 2019-12-26
+tags: [reasonml, react, webext, extension]
+---
+
+<!-- Introduction -->
+
+<!-- Prerequisites -->
+
+- [Browser Extensions Docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
+- [Reason React](https://reasonml.github.io/reason-react/docs/en/installation.html)
+  <!-- Setup phase -->
+
+<!-- Basic functionality -->
+
+<!-- conclusion -->
