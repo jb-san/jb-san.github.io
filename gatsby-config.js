@@ -25,7 +25,9 @@ module.exports = {
     },
     {
       resolve: `gatsby-theme-blog`,
-      options: {},
+      options: {
+        basePath: `/blog`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-fonts`,
