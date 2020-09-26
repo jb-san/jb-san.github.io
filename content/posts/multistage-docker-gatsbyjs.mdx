@@ -1,0 +1,59 @@
+---
+title: Building and serving gatsbyjs with docker
+date: 2020-09-26
+---
+
+On a recent project I have been working on, I had to find a way to host a gatsbyjs project in a [docker](https://www.docker.com/) container.
+After a quick search for `gatsbyjs docker`, most of the result pointed me to the fact that gatsbyjs have [official docker images](https://github.com/gatsbyjs/gatsby-docker),
+but when using it like shown in the README
+
+```
+FROM gatsbyjs/gatsby:onbuild as build
+
+FROM gatsbyjs/gatsby
+COPY --from=build /app/public /pub
+```
+
+I could not get it to work, after searching through the issues i found out that the [docker images needs to be updated](https://github.com/gatsbyjs/gatsby-docker/issues/38) but its still open so i decided to take matters into my own hands.
+
+## Multistage docker builds
+
+Docker has this awesome feature called [multistage build](https://docs.docker.com/develop/develop-images/multistage-build/) which allows us to basicly structure our dockerfile
+in a way to minimize the size of the final image. A traditional dockerfile would look something like this
+
+```docker
+FROM node:14.11.0
+#
+# Install and setup nginx to serve static files, removed for brevity.
+#
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . ./
+RUN npm run build
+
+RUN mv /app/public /usr/share/nginx/html
+
+```
+
+this would work, but you see that `FROM node:14.11.0` line at the top of the Dockerfile, that means that the final image will have node included, and all the dependencies that the application needs to build.
+there is a better way.
+
+### Enter multistage
+
+```
+FROM node:14.11.0 AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . ./
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/public /usr/share/nginx/html
+```
+
+As you can see it starts of similarly,we have one stage that uses the `node:14.11.0` image, it sets everything up and builds the public folder with the generated gatsby site,
+but at the end of the file we have a new `FROM nginx:alpine` and we then copy in only the public folder, This means that our final docker image will only contain our finished built site, and the bare minimun nginx to serve those files.
