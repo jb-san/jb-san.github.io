@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    "gatsby-plugin-advanced-sitemap",
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -41,6 +42,7 @@ module.exports = {
     title: `X3M`,
     author: `Jonathan Borg`,
     description: `Front-end, fullstack, whatever developer`,
+    siteUrl: `https://www.x3m.com`,
     social: [
       {
         name: `github`,
