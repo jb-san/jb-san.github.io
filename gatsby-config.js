@@ -42,7 +42,7 @@ module.exports = {
     title: `X3M`,
     author: `Jonathan Borg`,
     description: `Front-end, fullstack, whatever developer`,
-    siteUrl: `https://www.x3m.com`,
+    siteUrl: `https://x3m.io`,
     social: [
       {
         name: `github`,
